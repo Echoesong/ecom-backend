@@ -1,6 +1,7 @@
 require("dotenv").config();
 require('./config/db.connection.js');
 const express = require('express');
+const itemsRouter = require('./routes/itemsRouter.js')
 const {PORT} = process.env
 const cors = require("cors");
 const morgan = require("morgan")
@@ -16,6 +17,8 @@ app.use(morgan("dev")); // logging for development
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.use('/items', itemsRouter)
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
